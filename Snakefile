@@ -20,7 +20,7 @@ rule tophat:
      shell:""" 
 	mkdir -p samples/tophat/{wildcards.sample} 
 	tophat -p 10 -o samples/tophat/{wildcards.sample} -G {params.GFF} --library-type {params.LibraryType} {params.BowtieIndex} {input.fwd} {input.rev}  
-   	mv samples/tophat/{wildcards.sample}/accepted_hits.bam sampless/bam/{wildcards.sample}.bam
+   	mv samples/tophat/{wildcards.sample}/accepted_hits.bam samples/bam/{wildcards.sample}.bam
 	"""
 
 rule cufflinks:

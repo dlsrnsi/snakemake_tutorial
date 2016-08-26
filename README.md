@@ -69,7 +69,7 @@ rule tophat:
      shell:""" 
 	mkdir -p samples/tophat/{wildcards.sample} 
 	tophat -p 10 -o samples/tophat/{wildcards.sample} -G {params.GFF} --library-type {params.LibraryType} {params.BowtieIndex} {input.fwd} {input.rev}  
-   	mv samples/tophat/{wildcards.sample}/accepted_hits.bam sampless/bam/{wildcards.sample}.bam
+   	mv samples/tophat/{wildcards.sample}/accepted_hits.bam samples/bam/{wildcards.sample}.bam
 """
 ```
 `rule tophat`의 경우 tophat으로 align을 시킨후  결과물인 `samples/tophat/{sample}/accepted_hits.bam`을 `samples/bam/{sample}.bam`으로 옮기는 것을 볼 수 있다.
