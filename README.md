@@ -49,12 +49,12 @@ rule rule_name:
      shell: "command --option1 {params.param1} --option2 {params.param2} {input} {output}"
 ```
 의 구조로 되어있다.
-- rule\_name 은 rule의 이름을 지정한다
-- input은 input\_file을 지칭한다. input\_file이 존재하지 않을경우에는 일정시간(default:5seconds)를 기다린 후 없으면 pipeline의 수행을 abort시킨다.
-- output은 output\_file을 지칭한다. 해당 작업(rule)을 수행함으로써 만들어지는 output\_file을 지칭한다.
-- params는 해당 작업에 쓰일 parameter를 지칭한다. 뒤에서 언급하겠지만 Snakefile에서 설정하는 전역변수를 지정할 수 있다.
-- shell은 수행할 작업 명령이다.
-- shell 대신 run을 쓸수 있는데 이때는 command라인 명령어 대신 python3 코드를 수행할 수 있다
+- `rule_name` 은 rule의 이름을 지정한다
+- `input`은 input\_file을 지칭한다. input\_file이 존재하지 않을경우에는 일정시간(default:5seconds)를 기다린 후 없으면 pipeline의 수행을 abort시킨다.
+- `output`은 output\_file을 지칭한다. 해당 작업(rule)을 수행함으로써 만들어지는 output\_file을 지칭한다.
+- `params`는 해당 작업에 쓰일 parameter를 지칭한다. 뒤에서 언급하겠지만 Snakefile에서 설정하는 전역변수를 지정할 수 있다.
+- `shell`은 수행할 작업 명령이다.
+- `shell` 대신 `run`을 쓸수 있는데 이때는 command라인 명령어 대신 python3 코드를 수행할 수 있다
 
 ### Construct DAG with rules
 
@@ -149,7 +149,7 @@ rule comparison:
      output: "samples/comparison_result.csv"
      run:
        inputs = " ".join(input)
-       shell("python comprison.py "+inputs)
+       shell("python comprison.py "+inputs+" {output}")
 ```
 이럴 경우에 `expand(path_with_wildcards, wildcards)`함수를 쓰면 된다. 이 함수는 지정해준 path에 와일드카드들을 매칭시켜준 결과물을 파이썬 리스트로 반환시켜준다.
 위의 예시에서 input은

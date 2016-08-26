@@ -34,4 +34,4 @@ rule comparison:
      output: "samples/comparison_result.csv"
      run:
        inputs = " ".join(input)
-       shell("python comprison.py "+inputs+" {output}")
+       shell("python comparison.py "+inputs+" {output}")
