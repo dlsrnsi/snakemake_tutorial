@@ -158,6 +158,21 @@ rule comparison:
 ```
 이 될것이다. 따라서 `rule comparison`은 A와 B의 output이 모두 나오고 나서야 수행될 것이다.
 
+### Mapping wildcards to inputs and outputs of rule.
+
+`rule comparison`을 다시한번 살펴보자.
+
+```
+rule comparison:
+     input: expand("samples/cufflinks/{sample}/isoforms.fpkm_tracking", sample=SAMPLES)
+```
+`expand()`함수는 python list object의 값들인 wildcard들을 `rule comparison`에 맵핑해 줌과 동시에 여기에 연결되어있는 `rule cufflinks`의 `output: samples/cufflinks/{sample}/isoforms.fpkm_tracking`에도 매핑을 시켜준다.
+
+이런 매핑은 연쇄적으로 `rule cufflinks`의 `input`과  `rule tophat`의 `output`, 
+
+그리고 `input`으로까지 와일드카드를 매핑할 것이고, 실제 `samples/raw/{sample}_1.fastq.gz, samples/raw/{sample}_2.fastq.gz`가 존재하는 것을 확인한후, 파이프라인을 실행할 것이다.
+
+
 ## Rule all
 
 파이프 라인의 최종 목적은 `rule all`의 input으로 지정할 수 있다. `rule all`은 `output`을 필요로 하지 않는다.
