@@ -9,8 +9,6 @@ workdir: WDIR
 
 SAMPLES, = glob_wildcards(WDIR+"samples/raw/{sample}_1.fastq.gz")
 
-for sample in SAMPLES:
-    print(sample)
 
 rule all:
      input: "samples/comparison_result.csv"
